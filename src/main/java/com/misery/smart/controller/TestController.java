@@ -6,14 +6,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.misery.smart.base.BaseController;
+
 @Controller
 @RequestMapping("/test")
-public class TestController {
+public class TestController extends BaseController{
     
     @ResponseBody
     @RequestMapping(value = "/show")
     public String test(){
-        return new Date() + "你好啊";
+        try{
+            return new Date() + "你好啊";
+        }catch(Exception e){
+            exception(e);
+            return e.getMessage();
+        }
     }
     
     @RequestMapping(value = "/index")
